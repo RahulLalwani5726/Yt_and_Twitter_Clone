@@ -18,4 +18,5 @@ class ApiError extends Error{
         }
     }
 }
+export {ApiError}
 // ab humne apierror ke class bna kr ek structure bna diya hai je error me kya property hone cahuye aur error dena ke liye is class ka bs ek obj bna kr return kr denge aur dot (.) se hum iske messege aur property ko access kr sakte hai

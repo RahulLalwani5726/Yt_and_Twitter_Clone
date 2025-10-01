@@ -35,3 +35,12 @@ app.use(
 )
 
 app.use(cookieParser()) // iska use use ke brouser be secure cookie ko store / delete kar na aur user ke cookie me curd operation karna hai
+
+
+// +++++++++++++++++++++++ routers ++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+import routes from "./routes/user.routes.js";
+
+app.use("/api/v1/users",routes);
+
+export {app};

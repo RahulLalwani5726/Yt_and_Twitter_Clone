@@ -1,8 +1,8 @@
 import MakeConnection from "./db/ConnectWithDB.js";
 import dotenv from "dotenv";
-import experss from "express"
+import { app } from "./app.js";
 
-const App = experss();
+const App = app
 dotenv.config();
 
 MakeConnection() // humne MakeConnection ko async function bna ya ta aur jab be async function call hota hai to vo ek promise return kr ta hai

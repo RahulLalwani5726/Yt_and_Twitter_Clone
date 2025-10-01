@@ -31,7 +31,10 @@ const userSchema = new mongoose.Schema({
         required:true,
         max:[8,"Password must be greator then 8 character"]
     },
-    avtar:String,
+    avatar:{
+        type:String,
+        required:true
+    },
     coverimage:String,
     refreshtoken:String,
     
@@ -48,7 +51,7 @@ userSchema.pre("save" , async function(next){
     // hum isme arrow function ka use isliye nahi kar rhe hai kyo ke arrow function me this context nahi hota
     if(!this.isModified("password")) return next(); // this.isModified() is buildin method hai jis se hum kaise spacific entry be changes huye hai ya nahi vo pta kr sakte hai
 
-    this.password = bcrypt.hash(this.password , 10);
+    this.password = await bcrypt.hash(this.password , 10);
 })
 
 

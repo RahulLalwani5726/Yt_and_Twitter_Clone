@@ -9,7 +9,7 @@
 
 // 1 -> 
 
-const asyncHandler = (RequestHandler) => (
+export const asyncHandler = (RequestHandler) => (
     (req , res , next) =>(
         Promise.resolve(RequestHandler(req , res , next))
         .catch((error) => next(error))

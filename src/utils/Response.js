@@ -11,3 +11,5 @@ class Response{
         this.success = this.success < 400;
     }
 }
+
+export {Response}
