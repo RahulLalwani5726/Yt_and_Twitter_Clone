@@ -1,4 +1,4 @@
-import { userRegister } from "../controllers/user.controllers.js";
+import { userRegister } from "../controllers/User/Register.controllers.js";
 import {Router} from "express"
 import {Upload} from "../middlewares/multer.middleware.js"
 
@@ -10,7 +10,7 @@ routes.route("/register").post(Upload.fields([
         maxCount: 1
     },
     {
-        name:"coverImage",
+        name:"coverimage",
         maxCount:1
     }
 ]),userRegister)

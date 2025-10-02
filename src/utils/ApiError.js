@@ -11,11 +11,11 @@ class ApiError extends Error{
         this.error = error;
         this.statusCode = statusCode;
 
-        if(stack){
-            this.stack = stack;
-        }else{
-            this.stack = Error.prototype.stack();
-        }
+        // if(stack){
+        //     this.stack = stack;
+        // }else{
+        //     this.stack = Error.prototype.stack();
+        // }
     }
 }
 export {ApiError}

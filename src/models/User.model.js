@@ -3,42 +3,48 @@ import jwt from "jsonwebtoken" // ye crypto graphi algo ka use kar ta hai aur is
 import bcrypt from "bcrypt" // ye be same crypto graphi algo ka use kr ta hai per iska use hum password ko incrypt / dcrypt ke liye kare ge
 
 const userSchema = new mongoose.Schema({
-    watchHistory:[
+    watchHistory: [
         {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"Video"
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Video"
         }
     ],
-    username:{
-        type:String,
-        required:true,
-        unique:true,
-        lowercase:true,
-        trim:true,
-        index:true // iska use DB me optimise way me Serching ke liye kiya jaata hai per ye jyada performace leta hai to iska use soch samaj kr use kr na cahiye ke is field ke liye ye worth it hai jaise username ke liye wothit the kyo ke isko hum baar baar search kare ge
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        trim: true,
+        index: true // Helpful for optimizing search queries
     },
-    email:{
-        type:String,
-        required:true
-        
+    email: {
+        type: String,
+        required: true,
+        unique: true, // Recommended to prevent duplicate emails
+        lowercase: true,
+        trim: true
     },
-    fullname:{
-        type:String,
-        required:true
+    fullname: {
+        type: String,
+        required: true
     },
-    password:{
-        type:String,
-        required:true,
-        max:[8,"Password must be greator then 8 character"]
+    password: {
+        type: String,
+        required: true,
     },
-    avatar:{
-        type:String,
-        required:true
+    avatar: {
+        type: String,
+        required: true
     },
-    coverimage:String,
-    refreshtoken:String,
-    
-} , {timestamps:true});
+    coverimage: {
+        type: String,
+        default: "" // Optional, good to have a default
+    },
+    refreshtoken: {
+        type: String,
+        default: ""
+    }
+}, { timestamps: true });
 
 // ye ek hook hai jo mongosse deta hai aur be bahut hai pre , post etc
 // pre hook se hum data me kuch be badlaw jaise , save , delete , update , validate etc

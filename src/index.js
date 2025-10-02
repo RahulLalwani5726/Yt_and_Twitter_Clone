@@ -3,7 +3,9 @@ import dotenv from "dotenv";
 import { app } from "./app.js";
 
 const App = app
-dotenv.config();
+dotenv.config({
+    path:"./.env"
+});
 
 MakeConnection() // humne MakeConnection ko async function bna ya ta aur jab be async function call hota hai to vo ek promise return kr ta hai
     .then(

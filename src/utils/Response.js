@@ -3,12 +3,13 @@ class Response{
     constructor(
         statusCode,
         messege = "Success",
-        Data
+        Data,
+        success
     ){
         this.statusCode = statusCode;
         this.messege = messege;
         this.Data = Data;
-        this.success = this.success < 400;
+        this.success = success < 400;
     }
 }
 

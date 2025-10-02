@@ -8,6 +8,7 @@ cloudinary.config({
 })
 
 export const UploadOnCloudinary = async (LocalFilePath) =>{
+    if(!LocalFilePath) return null;
     try {
         const response = await cloudinary.uploader.upload(LocalFilePath , {
             resource_type:"auto"
@@ -18,7 +19,7 @@ export const UploadOnCloudinary = async (LocalFilePath) =>{
     }
     finally{
         
-        fs.unlinkSync(LocalFilePath) // that is core laibery of node js it help us to manage files
+        fs.unlinkSync(LocalFilePath); // that is core laibery of node js (fs) it help us to manage files
         // unlink methods get file path witch is uploaded on our server for temperlay and it is unlink( deleted )
     }
 }
