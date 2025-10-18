@@ -13,4 +13,3 @@ const subsciptionSchema = new mongoose.Schema({
 },{timestamps:true})
 
 const Subsciption = mongoose.model("Scribtion",subsciptionSchema);
-export default Subsciption
