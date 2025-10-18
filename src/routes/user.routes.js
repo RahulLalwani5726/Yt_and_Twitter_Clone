@@ -1,7 +1,7 @@
-import { userRegister } from "../controllers/User/Register.controllers.js";
+import { userRegister , LoginUser , userLogout} from "../controllers/User.controllers.js";
 import {Router} from "express"
 import {Upload} from "../middlewares/multer.middleware.js"
-
+import { verifyJWT } from "../middlewares/auth.middleware.js";
 const routes = Router();
  // Upload is middleWare
 routes.route("/register").post(Upload.fields([
@@ -14,5 +14,9 @@ routes.route("/register").post(Upload.fields([
         maxCount:1
     }
 ]),userRegister)
+
+routes.route("/login").post(LoginUser);
+
+routes.route("/logout").post(verifyJWT,userLogout);
 
 export default routes;

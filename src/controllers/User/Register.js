@@ -62,6 +62,7 @@ const userRegister = asyncHandler(async (req, res) => {
     return res.status(201).json(
         new Response(201 , "User Created Succeccfully! " , createdUser , 201)
     )
+    
 })
 
 export {
