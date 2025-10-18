@@ -1,8 +1,8 @@
 import { User } from "../../models/User.model.js";
 import { Response } from "../../utils/Response.js";
-import { asyncHandler } from "../../utils/asyncHandler";
+import { asyncHandler } from "../../utils/asyncHandler.js";
 
-export default userLogout = asyncHandler( async (req , res) =>{
+const userLogout = asyncHandler( async (req , res) =>{
     // delete refresh token from DB
     await User.findByIdAndUpdate(req.user._id , {
         refreshtoken:undefined
@@ -13,10 +13,14 @@ export default userLogout = asyncHandler( async (req , res) =>{
         httpOnly: true,
         secure: true
     }
-    return res.statue(200)
+    return res.status(200)
     .clearCookie("accessToken",options)
     .clearCookie("refreshToken",options)
     .json(
         new Response(200,{},"User Logouted")
     );
 })
+
+export {
+    userLogout
+}

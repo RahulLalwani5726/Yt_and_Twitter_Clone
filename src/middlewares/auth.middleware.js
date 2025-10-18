@@ -7,7 +7,7 @@ export const verifyJWT = asyncHandler(async(req , res , next) =>{
         const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ","");
         
         if(!token) throw new ApiError(405 , "Invalid Token");
-        const DecodeJwT = jwt.verify(token,process.env.REFRESH_TOKEN_SECRET);
+        const DecodeJwT = jwt.verify(token,process.env.ACCESS_TOKEN_SECRET);
         
         const user = User.findById(DecodeJwT?._id).select("-password -refreshtoken");
         if(!user) throw new ApiError(405 , "Invalid Token");

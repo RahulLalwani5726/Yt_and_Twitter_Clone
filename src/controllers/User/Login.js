@@ -1,15 +1,15 @@
 import { asyncHandler } from "../../utils/asyncHandler.js"
 import {ApiError} from "../../utils/ApiError.js"
-import User from "../../models/User.model.js"
+import {User} from "../../models/User.model.js"
 import { Response } from "../../utils/Response.js";
 
 const AccessAndRefreshGenrator = async(userId) => {
-    const user = User.findById(userId);
+    const user = await User.findById(userId);
     if(!user) throw new ApiError(500,"Somting went Wrong while Login User")
-    const accessToken = user.genrateAccessToken()
-    const refreshToken = user.genrateAccessToken()
-    user.refreshToken = refreshToken;
-    user.save({validateBeforeSave:false})
+    const accessToken = await user.genrateAccessToken()
+    const refreshToken = await user.genrateAccessToken()
+    user.refreshtoken = refreshToken;
+    await user.save({validateBeforeSave:false})
     return {accessToken , refreshToken};
 }
 
@@ -31,13 +31,13 @@ const userLogin = asyncHandler(async (req , res)=>{
     
     if(!user) throw new ApiError(404 , "User Not Found");
 
-    const verifyPassword = user.isPasswordCurrect(password);
+    const verifyPassword = await user.isPasswordCurrect(password);
 
-    if(verifyPassword) throw new ApiError(401 , "Password is Incurrect");
+    if(!verifyPassword) throw new ApiError(401 , "Password is Incurrect");
 
-    const {accessToken , refreshToken} = AccessAndRefreshGenrator(user._id);
-
-    const userData = User.findById(user_id).select(
+    const {accessToken , refreshToken} = await AccessAndRefreshGenrator(user._id);
+    
+    const userData = await User.findById(user._id).select(
         "-password -refreshtoken"
     )
     const options = {
@@ -62,5 +62,5 @@ const userLogin = asyncHandler(async (req , res)=>{
 })
 
 export {
-    LoginUser
+    userLogin
 }

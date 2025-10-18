@@ -1,4 +1,4 @@
-import { userRegister , LoginUser , userLogout} from "../controllers/User.controllers.js";
+import { userRegister , userLogin , userLogout} from "../controllers/User.controllers.js";
 import {Router} from "express"
 import {Upload} from "../middlewares/multer.middleware.js"
 import { verifyJWT } from "../middlewares/auth.middleware.js";
@@ -15,7 +15,7 @@ routes.route("/register").post(Upload.fields([
     }
 ]),userRegister)
 
-routes.route("/login").post(LoginUser);
+routes.route("/login").post(userLogin);
 
 routes.route("/logout").post(verifyJWT,userLogout);
 
