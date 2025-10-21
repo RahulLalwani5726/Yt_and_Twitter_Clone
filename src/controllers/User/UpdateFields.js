@@ -20,11 +20,10 @@ export const updateField = asyncHandler(async(req , res) => {
      }
  
      await user.save({validateBeforeSave:false});
- 
+     const newUser = await  User.findById(user._id);
      return res.status(201)
-     .json( new Response(201,"Fields Updated" , user));
+     .json( new Response(201,"Fields Updated" , newUser));
    } catch (error) {
         console.log("Error :: Update Fields :: ",error.messege);
-        
    }
 })

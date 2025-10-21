@@ -3,6 +3,7 @@ import {User} from "../../models/User.model.js"
 import {ApiError} from "../../utils/ApiError.js"
 import { Response } from "../../utils/Response.js";
 import {UploadOnCloudinary} from  "../../utils/cloudinary.js"
+
 export const updateAvatar = asyncHandler(async(req , res) =>{
     const avaterPath = req.file?.path;
     if(!avaterPath) throw new ApiError(401 , "Invalid Image");
@@ -17,6 +18,7 @@ export const updateAvatar = asyncHandler(async(req , res) =>{
         new Response(201,"Avatar Updated successful" , user)
     )
 }) 
+
 export const updateCoverImage = asyncHandler(async(req , res) =>{
     const coverImagePath = req.file?.path;
     if(!coverImagePath) throw new ApiError(401 , "Invalid Image");
