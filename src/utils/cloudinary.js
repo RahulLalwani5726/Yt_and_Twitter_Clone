@@ -1,4 +1,5 @@
 import {v2 as cloudinary} from "cloudinary"
+import {ApiError} from "./ApiError"
 import fs from "fs"
 
 cloudinary.config({
@@ -22,4 +23,13 @@ export const UploadOnCloudinary = async (LocalFilePath) =>{
         fs.unlinkSync(LocalFilePath); // that is core laibery of node js (fs) it help us to manage files
         // unlink methods get file path witch is uploaded on our server for temperlay and it is unlink( deleted )
     }
+}
+
+export const deleteOnCloudinary = async (fileUrl) =>{
+        try{
+            if(!fileUrl) throw new ApiError(404 , "File Url is Invalid");
+            await cloudinary.uploader.destroy(fileUrl,{resource_type:"auto"});
+        }catch(error){
+            console.log("Error :: Cloudinary :: Delete Assect :: ",error.messege);
+        }
 }
