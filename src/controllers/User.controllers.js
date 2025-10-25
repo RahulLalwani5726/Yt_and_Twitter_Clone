@@ -7,7 +7,8 @@ import {updateField} from "./User/UpdateFields.js"
 import {updateAvatar} from "./User/updateFiles.js"
 import {updateCoverImage} from "./User/updateFiles.js"
 import {getCurrentUser} from "./User/getCurrentUser.js"
-
+import {getUserChannelProfile} from "./User/getUserChannelProfile.js"
+import {getWatchHistory} from "./User/getWatchHistory.js"
 
 export{
     userRegister,
@@ -19,4 +20,6 @@ export{
     updateAvatar,
     updateCoverImage,
     getCurrentUser,
+    getUserChannelProfile,
+    getWatchHistory,
 }

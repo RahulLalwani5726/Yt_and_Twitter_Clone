@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-const subsciptionSchema = new mongoose.Schema({
+const subscirptionSchema = new mongoose.Schema({
     subcriber:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"User"
@@ -12,4 +12,4 @@ const subsciptionSchema = new mongoose.Schema({
 
 },{timestamps:true})
 
-const Subsciption = mongoose.model("Scribtion",subsciptionSchema);
+const Subscirption = mongoose.model("Subscirption",subscirptionSchema);
