@@ -1,0 +1,8 @@
+# Ignore everything
+*
+
+# Allow only this folder to be tracked
+!Mege_Project/
+
+# Keep the .gitignore itself tracked
+!.gitignore
